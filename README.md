@@ -1,6 +1,6 @@
 # VOANH AI — Chatbot LLM Free Tier Mistral Évolué
 
-**VOANH AI** est une plateforme d'intelligence artificielle personnelle avancée, entièrement contenue dans **une seule page HTML**. Elle exploite la puissance des modèles **Mistral AI** via leur **Free Tier** généreux, offrant des capacités de chatbot sophistiquées avec mémoire globale, agents spécialisés auto-générés, et gestion complète des données — le tout en local, sans serveur backend.
+**VOANH AI** est une plateforme d'intelligence artificielle personnelle avancée, entièrement contenue dans **une seule page HTML**. Elle exploite la puissance des modèles **Mistral AI** via leur **Free Tier** généreux, offrant des capacités de chatbot sophistiquées avec mémoire globale, agents spécialisés auto-générés, **dictée vocale Mistral/Voxtral**, upload audio et **personnalisation du thème dès le premier démarrage** — le tout en local, sans serveur backend.
 
 ---
 
@@ -13,12 +13,13 @@ Contrairement aux chatbots basiques, VOANH AI intègre des fonctionnalités avan
 1. **Single Page Application (SPA) Autonome**
    - Tout le code tient dans **un seul fichier `index.html`** (≈ 3800 lignes)
    - Aucune dépendance serveur : HTML + CSS + JavaScript vanilla
-   - Bootstrap 5.3 pour l'UI, Google Fonts pour la typographie cyberpunk
+   - Bootstrap 5.3 pour l'UI, Font Awesome pour les icônes et `@fontsource` via jsDelivr pour la typographie cyberpunk
    - IndexedDB intégré pour le stockage local persistant
 
 2. **Intégration Native Mistral AI**
    - Appel direct à l'API `https://api.mistral.ai/v1/chat/completions`
    - Support de **20+ modèles Mistral** (Omega, Zenith, Codestral, Devstral, Pixtral, Voxtral, etc.)
+   - Dictée vocale et transcription de fichiers audio avec Voxtral/Mistral Speech
    - Gestion intelligente des tokens et du contexte (jusqu'à 375K tokens)
    - Températures adaptatives par modèle (0.42 à 1.44)
 
@@ -34,7 +35,13 @@ Contrairement aux chatbots basiques, VOANH AI intègre des fonctionnalités avan
    - Chaque agent possède : nom, description, instructions détaillées, tags, style de réponse, température personnalisée
    - Les agents sont stockés localement et peuvent être modifiés, dupliqués, exportés
 
-5. **Sécurité & Confidentialité Totales**
+5. **Personnalisation au Démarrage**
+   - Le wizard initial permet de choisir le thème dès l'installation : `CYBER`, `MIDNIGHT`, `LIGHT` ou `CUSTOM`
+   - Le mode `CUSTOM` permet de définir les couleurs de fond, surface, accent et secondaire
+   - Le thème personnalisé est sauvegardé localement et restauré automatiquement
+   - L'interface prend en charge la dictée vocale, l'upload audio et la transcription directement depuis la zone de chat
+
+6. **Sécurité & Confidentialité Totales**
    - La clé API Mistral est stockée dans un **cookie sécurisé (365 jours)** + localStorage en fallback
    - **Aucune donnée ne transite vers des serveurs tiers** — uniquement vers `api.mistral.ai`
    - Toutes les conversations, agents et mémoires restent sur votre navigateur
@@ -99,6 +106,8 @@ Au premier lancement, un **wizard en 3 étapes** vous guide :
 2. **Étape 2** : Personnalisez votre IA
    - Nommez votre assistant (ex: `JARVIS`, `ATHENA`, `CODEX`)
    - Définissez son objectif principal (ex: "Assistant de développement full-stack")
+   - Choisissez votre thème de démarrage : `CYBER`, `MIDNIGHT`, `LIGHT` ou `CUSTOM`
+   - En mode `CUSTOM`, personnalisez les couleurs de fond, surface, accent et secondaire
 
 3. **Étape 3** : Génération automatique des agents
    - Mistral Large analyse votre profil
@@ -644,7 +653,9 @@ const MODELS = [
 
 ### Changer le Thème
 
-Modifiez les variables CSS dans `:root` :
+Le thème peut être choisi dès le wizard d'installation ou via le sélecteur intégré. Le mode `CUSTOM` sauvegarde vos couleurs dans IndexedDB.
+
+Vous pouvez aussi modifier les variables CSS dans `:root` :
 
 ```css
 :root {
@@ -667,7 +678,8 @@ Modifiez les variables CSS dans `:root` :
 - **Développé par** : VOANH AI Team
 - **Moteur IA** : Mistral AI (https://mistral.ai)
 - **UI Framework** : Bootstrap 5.3
-- **Fonts** : Google Fonts (Orbitron, Share Tech Mono, Exo 2)
+- **Fonts** : `@fontsource` via jsDelivr (Orbitron, Share Tech Mono, Exo 2)
+- **Icônes** : Font Awesome
 - **Licence** : Usage personnel et commercial autorisé
 
 ---
