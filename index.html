@@ -5,7 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>VOANH AI — Votre Intelligence Artificielle Personnelle</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5/400.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5/600.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5/700.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5/900.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/share-tech-mono@5/400.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/exo-2@5/300.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/exo-2@5/400.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/exo-2@5/500.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/exo-2@5/600.css" rel="stylesheet">
 <style>
   /* ═══════════════════════════════════════════
    VOANH DESIGN SYSTEM — CYBER / 2ADVANCED
@@ -330,6 +339,81 @@ body::before {
   word-wrap: break-word;
   font-size: 14px;
 }
+.message-content.markdown {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.message-content.markdown > *:first-child { margin-top: 0; }
+.message-content.markdown > *:last-child { margin-bottom: 0; }
+.message-content.markdown p {
+  margin: 0 0 0.75rem;
+}
+.message-content.markdown h1,
+.message-content.markdown h2,
+.message-content.markdown h3,
+.message-content.markdown h4 {
+  font-family: var(--font-display);
+  color: var(--text-bright);
+  line-height: 1.35;
+  margin: 1rem 0 0.45rem;
+  letter-spacing: 0.5px;
+}
+.message-content.markdown h1 { font-size: 18px; }
+.message-content.markdown h2 { font-size: 16px; }
+.message-content.markdown h3,
+.message-content.markdown h4 { font-size: 14px; }
+.message-content.markdown ul,
+.message-content.markdown ol {
+  margin: 0.35rem 0 0.85rem 1.2rem;
+  padding: 0;
+}
+.message-content.markdown li {
+  margin: 0.25rem 0;
+  padding-left: 0.15rem;
+}
+.message-content.markdown blockquote {
+  margin: 0.85rem 0;
+  padding: 0.55rem 0.8rem;
+  border-left: 2px solid var(--cyan);
+  background: rgba(0,229,255,0.06);
+  color: var(--text-bright);
+}
+.message-content.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--text-code);
+  background: rgba(0,229,255,0.08);
+  border: 1px solid rgba(0,229,255,0.16);
+  border-radius: 4px;
+  padding: 0.08rem 0.28rem;
+}
+.message-content.markdown pre {
+  margin: 0.85rem 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  background: rgba(2,5,9,0.78);
+  border: 1px solid rgba(0,229,255,0.18);
+  border-radius: var(--r);
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.28);
+}
+.message-content.markdown pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #d8ecff;
+  line-height: 1.55;
+  white-space: pre;
+}
+.message-content.markdown a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,229,255,0.35);
+}
+.message-content.markdown a:hover {
+  color: var(--neon);
+  border-bottom-color: var(--neon);
+}
 
 .msg-meta {
   font-family: var(--font-mono);
@@ -641,6 +725,8 @@ body::before {
 #voice-btn { background: var(--hull); border: var(--hud-border); color: var(--text-dim); font-size: 16px; width: 46px; height: 46px; border-radius: var(--r-lg); cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; flex-shrink: 0; align-self: flex-end; }
 #voice-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 #voice-btn.recording { border-color: var(--danger); color: var(--danger); animation: pulse-border 1s infinite; background: rgba(255,51,102,0.1); }
+#voice-btn.transcribing { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,0.08); cursor: wait; }
+#voice-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 @keyframes pulse-border { 0%,100%{box-shadow:0 0 0 0 rgba(255,51,102,0.4)}50%{box-shadow:0 0 0 6px rgba(255,51,102,0)} }
 
 /* ═══ SCROLL TO BOTTOM ═══ */
@@ -1150,6 +1236,7 @@ body::before {
   #scroll-bottom { right: 58px; bottom: 75px; }
   #archives-btn { left: 62px; }
   #memory-toggle { right: 16px; }
+  .theme-choice-grid, .custom-theme-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -1257,6 +1344,74 @@ body::before {
   text-align: center;
   margin-bottom: 28px;
   line-height: 1.6;
+}
+.theme-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+.theme-choice {
+  background: var(--hull);
+  border: var(--hud-border);
+  color: var(--text);
+  border-radius: var(--r);
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+.theme-choice:hover,
+.theme-choice.active {
+  border-color: var(--cyan);
+  color: var(--text-bright);
+  box-shadow: 0 0 14px var(--cyan-dim);
+}
+.theme-choice-swatch {
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 8px;
+}
+.theme-choice-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.custom-theme-panel {
+  display: none;
+  background: rgba(0,229,255,0.04);
+  border: var(--hud-border);
+  border-radius: var(--r);
+  padding: 12px;
+  margin-top: 10px;
+}
+.custom-theme-panel.active { display: block; }
+.custom-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.color-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.color-field label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.color-field input[type="color"] {
+  width: 100%;
+  height: 38px;
+  border: var(--hud-border);
+  border-radius: var(--r);
+  background: var(--hull);
+  padding: 3px;
+  cursor: pointer;
 }
 .wizard-progress {
   display: flex;
@@ -1563,6 +1718,7 @@ body::before {
       <option value="cyber">◈ CYBER</option>
       <option value="midnight">◈ MIDNIGHT</option>
       <option value="light">◈ LIGHT</option>
+      <option value="custom">◈ CUSTOM</option>
     </select>
     <button class="hud-btn primary" id="open-api-modal">⬡ API KEY</button>
     <button class="hud-btn" id="open-agent-modal">⚙ AGENT</button>
@@ -1581,6 +1737,7 @@ body::before {
       <option value="cyber">◈ CYBER</option>
       <option value="midnight">◈ MIDNIGHT</option>
       <option value="light">◈ LIGHT</option>
+      <option value="custom">◈ CUSTOM</option>
     </select>
   </div>
   <!-- Row 2 : Modèle + Agent -->
@@ -1609,9 +1766,9 @@ body::before {
 
 <!-- ═══════════════════ INPUT ═══════════════════ -->
 <div id="input-area" style="position:relative">
-  <button id="voice-btn" title="Dictée vocale">🎤</button>
+  <button id="voice-btn" title="Dictée vocale Mistral">🎤</button>
   <button id="file-upload-btn" title="Joindre un fichier/image/audio" style="background:var(--hull);border:var(--hud-border);color:var(--text-dim);font-size:16px;width:46px;height:46px;border-radius:var(--r-lg);cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:flex-end">📎</button>
-  <input type="file" id="file-input" accept="image/*,audio/*,.pdf" style="display:none">
+  <input type="file" id="file-input" accept="image/*,audio/*,.mp3,.wav,.m4a,.mp4,.mpeg,.mpga,.ogg,.oga,.webm,.flac,.aac,.opus,.pdf" style="display:none">
   <textarea id="user-input" placeholder="Transmettez votre message… (Entrée pour envoyer, Maj+Entrée pour nouvelle ligne)" rows="1"></textarea>
   <button id="send-btn">SEND ▶</button>
 </div>
@@ -1945,6 +2102,47 @@ body::before {
         <textarea class="field-textarea" id="wizard-ai-goal" rows="3" placeholder="Décrivez votre contexte et objectif. Ex : &#10;'Je suis développeur freelance web, j'ai besoin d'une IA pour m'aider avec le code, la gestion de projets clients, la rédaction de propositions commerciales et la veille technologique.'&#10;ou&#10;'Je suis étudiant en médecine, j'ai besoin d'aide pour réviser, comprendre des cas cliniques, préparer mes examens et m'organiser.'"></textarea>
         <div class="field-hint">▸ Plus vous êtes précis, plus les agents générés seront pertinents.</div>
       </div>
+      <div class="field-group">
+        <label class="field-label">◈ Thème au démarrage</label>
+        <div class="theme-choice-grid" id="wizard-theme-choices">
+          <button type="button" class="theme-choice active" data-theme-choice="cyber">
+            <div class="theme-choice-swatch" style="background:linear-gradient(135deg,#020509,#00e5ff)"></div>
+            <div class="theme-choice-name">CYBER</div>
+          </button>
+          <button type="button" class="theme-choice" data-theme-choice="midnight">
+            <div class="theme-choice-swatch" style="background:linear-gradient(135deg,#09090f,#9b8fff)"></div>
+            <div class="theme-choice-name">MIDNIGHT</div>
+          </button>
+          <button type="button" class="theme-choice" data-theme-choice="light">
+            <div class="theme-choice-swatch" style="background:linear-gradient(135deg,#f2f6fb,#0070a8)"></div>
+            <div class="theme-choice-name">LIGHT</div>
+          </button>
+          <button type="button" class="theme-choice" data-theme-choice="custom">
+            <div class="theme-choice-swatch" id="custom-theme-swatch" style="background:linear-gradient(135deg,#020509,#00e5ff,#00ff9d)"></div>
+            <div class="theme-choice-name">CUSTOM</div>
+          </button>
+        </div>
+        <div class="custom-theme-panel" id="custom-theme-panel">
+          <div class="custom-theme-grid">
+            <div class="color-field">
+              <label for="custom-theme-bg">Fond</label>
+              <input type="color" id="custom-theme-bg" value="#020509">
+            </div>
+            <div class="color-field">
+              <label for="custom-theme-surface">Surface</label>
+              <input type="color" id="custom-theme-surface" value="#091525">
+            </div>
+            <div class="color-field">
+              <label for="custom-theme-accent">Accent</label>
+              <input type="color" id="custom-theme-accent" value="#00e5ff">
+            </div>
+            <div class="color-field">
+              <label for="custom-theme-glow">Secondaire</label>
+              <input type="color" id="custom-theme-glow" value="#00ff9d">
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="btn-row" style="border-top:none;padding-top:0">
         <button class="btn-ghost" id="wizard-step2-back">← Retour</button>
         <button class="btn-primary" id="wizard-step2-next">GÉNÉRER MES AGENTS →</button>
@@ -2115,6 +2313,8 @@ const MODELS = [
 
 const DB_NAME = "VOANH_AI_DB";
 const DB_VERSION = 3;
+const MISTRAL_TRANSCRIPTION_MODEL = "voxtral-mini-latest";
+const MISTRAL_AUDIO_CHAT_MODEL = "voxtral-mini-latest";
 
 let state = {
   apiKey: null,
@@ -2124,8 +2324,24 @@ let state = {
   model: "codestral-2508",
   globalMemories: [],
   aiConfig: null, // {name, goal} from wizard
+  customTheme: null,
   attachedFile: null  // {type, data, name, mimeType}
 };
+
+const DEFAULT_CUSTOM_THEME = {
+  bg: "#020509",
+  surface: "#091525",
+  accent: "#00e5ff",
+  glow: "#00ff9d"
+};
+const THEME_IDS = ["cyber", "midnight", "light", "custom"];
+const CUSTOM_THEME_VARS = [
+  "--void", "--deep", "--hull", "--plate", "--grid", "--wire",
+  "--cyan", "--cyan-dim", "--cyan-glow", "--neon", "--neon-dim",
+  "--text", "--text-bright", "--text-dim", "--text-code",
+  "--border-cyan", "--scanline", "--hud-border"
+];
+let wizardThemeChoice = "cyber";
 
 // ════════════════════════════════════════
 // UTILS
@@ -2135,17 +2351,140 @@ const $$ = s => document.querySelectorAll(s);
 const uuid = () => crypto.randomUUID();
 const now = () => Date.now();
 
+const escapeHtmlPlain = t => (t||'')
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;");
+
+const escapeAttr = t => escapeHtmlPlain(t)
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#39;");
+
 const escapeHtml = t => (t||'')
   .replace(/&/g,"&amp;")
   .replace(/</g,"&lt;")
   .replace(/>/g,"&gt;")
   .replace(/\n/g,"<br>");
 
+const safeLink = url => {
+  const clean = (url || '').trim();
+  return /^(https?:\/\/|mailto:)/i.test(clean) ? escapeAttr(clean) : '#';
+};
+
+function formatInlineMarkdown(text) {
+  const codeParts = [];
+  let html = escapeHtmlPlain(text).replace(/`([^`]+)`/g, (_, code) => {
+    const token = `@@CODETOKEN${codeParts.length}@@`;
+    codeParts.push(`<code>${code}</code>`);
+    return token;
+  });
+
+  html = html
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, label, url) => `<a href="${safeLink(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+    .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+    .replace(/_([^_\n]+)_/g, '<em>$1</em>');
+
+  codeParts.forEach((code, i) => { html = html.replace(`@@CODETOKEN${i}@@`, code); });
+  return html;
+}
+
+function renderMarkdown(content) {
+  const codeBlocks = [];
+  const source = (content || '')
+    .replace(/\r\n/g, '\n')
+    .replace(/```([a-z0-9_-]+)?\n?([\s\S]*?)```/gi, (_, lang, code) => {
+      const token = `@@CODE_BLOCK_${codeBlocks.length}@@`;
+      const langClass = lang ? ` class="language-${escapeHtmlPlain(lang)}"` : '';
+      codeBlocks.push(`<pre><code${langClass}>${escapeHtmlPlain(code.replace(/\n$/,''))}</code></pre>`);
+      return `\n${token}\n`;
+    });
+
+  const lines = source.split('\n');
+  let html = '';
+  let paragraph = [];
+  let listType = null;
+
+  const closeList = () => {
+    if (listType) {
+      html += `</${listType}>`;
+      listType = null;
+    }
+  };
+  const flushParagraph = () => {
+    if (paragraph.length) {
+      html += `<p>${formatInlineMarkdown(paragraph.join(' '))}</p>`;
+      paragraph = [];
+    }
+  };
+
+  lines.forEach(line => {
+    const trimmed = line.trim();
+    const codeMatch = trimmed.match(/^@@CODE_BLOCK_(\d+)@@$/);
+    if (codeMatch) {
+      flushParagraph();
+      closeList();
+      html += codeBlocks[Number(codeMatch[1])] || '';
+      return;
+    }
+
+    if (!trimmed) {
+      flushParagraph();
+      closeList();
+      return;
+    }
+
+    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
+    if (heading) {
+      flushParagraph();
+      closeList();
+      const level = heading[1].length;
+      html += `<h${level}>${formatInlineMarkdown(heading[2])}</h${level}>`;
+      return;
+    }
+
+    const quote = trimmed.match(/^>\s?(.+)$/);
+    if (quote) {
+      flushParagraph();
+      closeList();
+      html += `<blockquote>${formatInlineMarkdown(quote[1])}</blockquote>`;
+      return;
+    }
+
+    const unordered = trimmed.match(/^[-*]\s+(.+)$/);
+    const ordered = trimmed.match(/^\d+\.\s+(.+)$/);
+    if (unordered || ordered) {
+      flushParagraph();
+      const nextType = unordered ? 'ul' : 'ol';
+      if (listType !== nextType) {
+        closeList();
+        html += `<${nextType}>`;
+        listType = nextType;
+      }
+      html += `<li>${formatInlineMarkdown((unordered || ordered)[1])}</li>`;
+      return;
+    }
+
+    closeList();
+    paragraph.push(trimmed);
+  });
+
+  flushParagraph();
+  closeList();
+  return html || escapeHtml(content);
+}
+
 const toast = (msg, type = "info") => {
   const t = document.createElement("div");
   t.className = `toast ${type}`;
   const icon = type === "error" ? "⚠" : type === "success" ? "✓" : "◈";
-  t.innerHTML = `<span style="color:${type==='error'?'var(--danger)':type==='success'?'var(--neon)':'var(--cyan)'}">${icon}</span><span>${msg}</span>`;
+  const iconSpan = document.createElement("span");
+  iconSpan.style.color = type === 'error' ? 'var(--danger)' : type === 'success' ? 'var(--neon)' : 'var(--cyan)';
+  iconSpan.textContent = icon;
+  const msgSpan = document.createElement("span");
+  msgSpan.textContent = msg;
+  t.append(iconSpan, msgSpan);
   $("#toast-container").appendChild(t);
   setTimeout(() => t.remove(), 3800);
 };
@@ -2177,6 +2516,117 @@ const isValidApiKey = k => {
   if (c.length < 20) return false;
   return /^[A-Za-z0-9\-_]{20,}$/.test(c);
 };
+
+function isRateLimitError(err) {
+  return err?.status === 429 || /rate limit|too many requests|quota/i.test(err?.message || "");
+}
+
+const normalizeHex = (hex, fallback) => /^#[0-9a-f]{6}$/i.test(hex || "") ? hex : fallback;
+
+function hexToRgb(hex) {
+  const clean = normalizeHex(hex, "#000000").slice(1);
+  const n = parseInt(clean, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+
+function hexToRgba(hex, alpha) {
+  const { r, g, b } = hexToRgb(hex);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function isLightHex(hex) {
+  const { r, g, b } = hexToRgb(hex);
+  return ((r * 299 + g * 587 + b * 114) / 1000) > 155;
+}
+
+function clearCustomThemeVars() {
+  CUSTOM_THEME_VARS.forEach(v => document.documentElement.style.removeProperty(v));
+}
+
+function sanitizeCustomTheme(theme = {}) {
+  return {
+    bg: normalizeHex(theme.bg, DEFAULT_CUSTOM_THEME.bg),
+    surface: normalizeHex(theme.surface, DEFAULT_CUSTOM_THEME.surface),
+    accent: normalizeHex(theme.accent, DEFAULT_CUSTOM_THEME.accent),
+    glow: normalizeHex(theme.glow, DEFAULT_CUSTOM_THEME.glow)
+  };
+}
+
+function applyCustomTheme(theme) {
+  const cfg = sanitizeCustomTheme(theme);
+  const light = isLightHex(cfg.bg);
+  const vars = {
+    "--void": cfg.bg,
+    "--deep": cfg.bg,
+    "--hull": cfg.surface,
+    "--plate": cfg.surface,
+    "--grid": hexToRgba(cfg.accent, light ? 0.16 : 0.18),
+    "--wire": hexToRgba(cfg.accent, light ? 0.28 : 0.26),
+    "--cyan": cfg.accent,
+    "--cyan-dim": hexToRgba(cfg.accent, 0.14),
+    "--cyan-glow": hexToRgba(cfg.accent, 0.34),
+    "--neon": cfg.glow,
+    "--neon-dim": hexToRgba(cfg.glow, 0.14),
+    "--text": light ? "#2d4056" : "#b8d4f0",
+    "--text-bright": light ? "#0d1f35" : "#e8f4ff",
+    "--text-dim": light ? "#6c8198" : "#6787a7",
+    "--text-code": cfg.accent,
+    "--border-cyan": `1px solid ${hexToRgba(cfg.accent, 0.38)}`,
+    "--scanline": `repeating-linear-gradient(0deg, transparent, transparent 2px, ${hexToRgba(cfg.accent, 0.018)} 2px, ${hexToRgba(cfg.accent, 0.018)} 4px)`,
+    "--hud-border": `1px solid ${hexToRgba(cfg.accent, 0.24)}`
+  };
+  Object.entries(vars).forEach(([key, value]) => document.documentElement.style.setProperty(key, value));
+  state.customTheme = cfg;
+  return cfg;
+}
+
+function getCustomThemeFromInputs() {
+  return sanitizeCustomTheme({
+    bg: document.getElementById('custom-theme-bg')?.value,
+    surface: document.getElementById('custom-theme-surface')?.value,
+    accent: document.getElementById('custom-theme-accent')?.value,
+    glow: document.getElementById('custom-theme-glow')?.value
+  });
+}
+
+function syncThemeUi(theme = document.documentElement.dataset.theme, customTheme = state.customTheme) {
+  const selected = THEME_IDS.includes(theme) ? theme : "cyber";
+  const cfg = sanitizeCustomTheme(customTheme || DEFAULT_CUSTOM_THEME);
+  ["theme-select", "theme-select-mob"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = selected;
+  });
+  document.querySelectorAll('[data-theme-choice]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.themeChoice === selected);
+  });
+  const panel = document.getElementById('custom-theme-panel');
+  if (panel) panel.classList.toggle('active', selected === "custom");
+  const fields = {
+    "custom-theme-bg": cfg.bg,
+    "custom-theme-surface": cfg.surface,
+    "custom-theme-accent": cfg.accent,
+    "custom-theme-glow": cfg.glow
+  };
+  Object.entries(fields).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el && el.value !== value) el.value = value;
+  });
+  const swatch = document.getElementById('custom-theme-swatch');
+  if (swatch) swatch.style.background = `linear-gradient(135deg, ${cfg.bg}, ${cfg.surface}, ${cfg.accent}, ${cfg.glow})`;
+}
+
+function applyTheme(theme = "cyber", customTheme = state.customTheme, persist = false) {
+  const selected = THEME_IDS.includes(theme) ? theme : "cyber";
+  if (selected === "custom") applyCustomTheme(customTheme || DEFAULT_CUSTOM_THEME);
+  else clearCustomThemeVars();
+  document.documentElement.dataset.theme = selected;
+  wizardThemeChoice = selected;
+  syncThemeUi(selected, selected === "custom" ? state.customTheme : customTheme);
+  if (persist && db.conn) {
+    db.put('settings', { id:'theme', value:selected }).catch(()=>{});
+    if (selected === "custom") db.put('settings', { id:'customTheme', value:state.customTheme }).catch(()=>{});
+  }
+}
 
 // ════════════════════════════════════════
 // INDEXEDDB
@@ -2327,13 +2777,15 @@ function renderMessages() {
     const printBtn = m.role === 'assistant' ? '<button class="msg-action-btn" onclick="window.print()">🖨 PDF</button>' : '';
     const ratingHtml = m.role === 'assistant' ? `<div class="msg-rating"><span class="rating-label">QUALITÉ</span>${[1,2,3,4,5].map(s => `<button class="rating-star${(m.rating||0)>=s?' active':''}" onclick="rateMessage(${msgId},${s})">★</button>`).join('')}</div>` : '';
     const imgHtml = m.imageData ? `<div class="msg-image"><img src="${m.imageData}" alt="Image jointe" loading="lazy"></div>` : '';
-    const audioHtml = m.audioName ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">🎵 ${m.audioName}</div>` : '';
+    const audioHtml = m.audioName ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">🎵 ${escapeHtmlPlain(m.audioName)}</div>` : '';
+    const contentClass = m.role === 'assistant' ? 'message-content markdown' : 'message-content';
+    const contentHtml = m.role === 'assistant' ? renderMarkdown(m.content || '') : escapeHtml(m.content || '');
     div.innerHTML = `
       <div class="msg-label">${label}</div>
       ${imgHtml}${audioHtml}
-      <div class="message-content" id="mc-${msgId}">${escapeHtml(m.content || '')}</div>
+      <div class="${contentClass}" id="mc-${msgId}">${contentHtml}</div>
       <div class="msg-meta">
-        <span>${new Date(m.ts).toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span>
+        <span>${new Date(msgId).toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span>
         ${memTags}
       </div>
       ${ratingHtml}
@@ -2406,6 +2858,11 @@ function updateContextMeter() {
 // ARCHIVES
 // ════════════════════════════════════════
 let archivesSearchQuery = "";
+
+function closeArchivesPanel() {
+  const panel = $("#archives-panel");
+  if (panel) panel.classList.remove("active");
+}
 
 async function renderArchives() {
   const list = $("#archives-list");
@@ -2508,7 +2965,11 @@ async function loadChat(id) {
       try {
         const ag = await db.get('agents', chat.agentId);
         if (ag) { state.agent = ag; $("#agent-select").value = ag.id; }
+        else { state.agent = null; $("#agent-select").value = ""; }
       } catch(e) {}
+    } else {
+      state.agent = null;
+      $("#agent-select").value = "";
     }
     renderMessages();
   } catch(e) { console.error("loadChat:", e); }
@@ -2717,6 +3178,26 @@ async function importData(file) {
     if (data.global_memory?.length) {
       for (const m of data.global_memory) { await db.put('global_memory', m); count++; }
     }
+    if (data.settings?.length) {
+      for (const s of data.settings) {
+        if (s?.id) { await db.put('settings', s); count++; }
+      }
+    }
+
+    const importedSettings = data.settings || [];
+    const importedTheme = importedSettings.find(s => s.id === 'theme')?.value;
+    const importedCustomTheme = importedSettings.find(s => s.id === 'customTheme')?.value;
+    const importedAiConfig = importedSettings.find(s => s.id === 'aiConfig')?.value;
+    const importedModel = importedSettings.find(s => s.id === 'model')?.value;
+    if (importedCustomTheme) state.customTheme = sanitizeCustomTheme(importedCustomTheme);
+    if (importedTheme) applyTheme(importedTheme, state.customTheme || DEFAULT_CUSTOM_THEME, false);
+    if (importedAiConfig) { state.aiConfig = importedAiConfig; updateBrandName(); }
+    if (importedModel && MODELS.some(m => m.id === importedModel)) {
+      state.model = importedModel;
+      const modelSelect = $("#model-select");
+      if (modelSelect) modelSelect.value = state.model;
+    }
+
     await memory.getAll();
     await loadAgents();
     await computeStats();
@@ -2764,25 +3245,25 @@ function initFileUpload() {
     const model = MODELS.find(m => m.id === state.model);
     const isVision = model?.vision || state.model.includes('pixtral');
     const isAudio = model?.audio || state.model.includes('voxtral');
-    const isImage = file.type.startsWith('image/');
-    const isAudioFile = file.type.startsWith('audio/');
+    const isImage = isImageUpload(file);
+    const isAudioFile = isAudioUpload(file);
     if (isImage) {
       // Convert to base64
       const reader = new FileReader();
       reader.onload = (ev) => {
-        state.attachedFile = { type: 'image', data: ev.target.result, name: file.name, mimeType: file.type };
+        state.attachedFile = { type: 'image', data: ev.target.result, name: file.name, mimeType: file.type || 'image/*' };
         updateFilePreview();
       };
       reader.readAsDataURL(file);
     } else if (isAudioFile) {
       const reader = new FileReader();
       reader.onload = (ev) => {
-        state.attachedFile = { type: 'audio', data: ev.target.result, name: file.name, mimeType: file.type };
+        state.attachedFile = { type: 'audio', data: ev.target.result, name: file.name, mimeType: file.type || 'audio/*' };
         updateFilePreview();
       };
       reader.readAsDataURL(file);
     } else {
-      toast("Format non supporté. Utilisez image/* ou audio/*", "error");
+      toast("Format non supporté. Utilisez une image ou un fichier audio mp3, wav, m4a, ogg, webm, flac, aac.", "error");
     }
     inp.value = '';
   };
@@ -2802,13 +3283,87 @@ function updateFilePreview() {
     area.parentNode.insertBefore(preview, area);
   }
   const icon = state.attachedFile.type === 'image' ? '🖼' : '🎵';
-  preview.innerHTML = `${icon} <strong style="color:var(--cyan)">${state.attachedFile.name}</strong><button class="file-preview-remove" onclick="clearAttachedFile()">✕ Retirer</button>`;
+  preview.innerHTML = `${icon} <strong style="color:var(--cyan)">${escapeHtmlPlain(state.attachedFile.name)}</strong><button class="file-preview-remove" onclick="clearAttachedFile()">✕ Retirer</button>`;
 }
 
 window.clearAttachedFile = () => {
   state.attachedFile = null;
   updateFilePreview();
 };
+
+function dataUrlToBlob(dataUrl) {
+  const [meta, base64] = (dataUrl || "").split(",");
+  if (!meta || !base64) throw new Error("Fichier audio invalide");
+  const mime = meta.match(/data:([^;]+)/)?.[1] || "audio/webm";
+  const bin = atob(base64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
+function dataUrlToBase64(dataUrl) {
+  const base64 = (dataUrl || "").split(",")[1];
+  if (!base64) throw new Error("Fichier audio invalide");
+  return base64;
+}
+
+function extractTranscriptionText(data) {
+  if (typeof data?.text === "string" && data.text.trim()) return data.text.trim();
+  if (Array.isArray(data?.segments)) {
+    return data.segments
+      .map(s => typeof s === "string" ? s : (s?.text || s?.content || ""))
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  if (Array.isArray(data?.chunks)) {
+    return data.chunks
+      .map(s => typeof s === "string" ? s : (s?.text || s?.content || ""))
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  return "";
+}
+
+async function askVoxtralAboutAudio(dataUrl, instruction = "Transcris cet audio précisément. Si c'est une chanson, transcris les paroles audibles dans la langue originale.") {
+  const res = await fetch("https://api.mistral.ai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${state.apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: MISTRAL_AUDIO_CHAT_MODEL,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "input_audio", input_audio: dataUrlToBase64(dataUrl) },
+          { type: "text", text: instruction }
+        ]
+      }],
+      temperature: 0.1,
+      max_tokens: state.agent?.maxTokens || 4096
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    let errMsg = err.slice(0, 300);
+    try { const j = JSON.parse(err); errMsg = j.message || j.error?.message || errMsg; } catch(e) {}
+    throw new Error(errMsg);
+  }
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content?.trim() || "";
+}
+
+function isAudioUpload(file) {
+  const name = (file?.name || "").toLowerCase();
+  return file?.type?.startsWith('audio/') ||
+    /\.(mp3|wav|m4a|mp4|mpeg|mpga|ogg|oga|webm|flac|aac|opus)$/i.test(name);
+}
+
+function isImageUpload(file) {
+  const name = (file?.name || "").toLowerCase();
+  return file?.type?.startsWith('image/') ||
+    /\.(png|jpe?g|gif|webp|bmp|avif)$/i.test(name);
+}
 
 // Override sendMessage to handle file attachments
 async function sendMessage() {
@@ -2822,16 +3377,105 @@ async function sendMessage() {
 
   const model = MODELS.find(m => m.id === state.model) || MODELS[0];
   const isVision = state.model.includes('pixtral');
-  const isAudio = state.model.includes('voxtral');
 
-  if (state.attachedFile && (isVision || isAudio)) {
+  if (state.attachedFile?.type === 'audio') {
+    const attachment = state.attachedFile;
+    const userMsg = {
+      role: "user",
+      content: txt || "Transcris cet audio",
+      ts: now(),
+      audioName: attachment.name
+    };
+    state.messages.push(userMsg);
+    renderMessages();
+    document.getElementById('user-input').value = "";
+    autoResizeTextarea();
+    document.getElementById('send-btn').disabled = true;
+    document.getElementById('send-btn').innerHTML = '<span class="spin-ring"></span>';
+    showTyping();
+    await saveChat();
+
+    try {
+      let transcript = "";
+      try {
+        transcript = await transcribeWithMistral(dataUrlToBlob(attachment.data));
+      } catch(e) {
+        if (isRateLimitError(e)) {
+          throw new Error("Limite Mistral atteinte. Attendez un peu puis réessayez avec le même fichier ; aucun nouvel appel fallback n'a été lancé.");
+        }
+        throw e;
+      }
+      if (!transcript) {
+        toast("Transcription vide, essai Voxtral audio direct…", "info");
+        transcript = await askVoxtralAboutAudio(
+          attachment.data,
+          txt || "Transcris cet audio précisément. Si c'est une chanson, transcris les paroles audibles dans la langue originale."
+        );
+      }
+      if (!txt) {
+        hideTyping();
+        state.messages.push({ role: "assistant", content: transcript || "Aucune transcription détectée. Le fichier contient peut-être surtout de la musique, du silence, ou un format vidéo non lisible par Voxtral.", ts: now() });
+        renderMessages();
+        await saveChat();
+      } else {
+        const audioPrompt = `${txt}\n\n[Transcription audio : ${attachment.name}]\n${transcript}`;
+        const relevantMems = memory.getRelevant(audioPrompt, 4);
+        const activeModelId = (state.agent?.modelPref && state.agent.modelPref !== '') ? state.agent.modelPref : state.model;
+        const activeModel = MODELS.find(m => m.id === activeModelId) || model;
+        const contextMessages = [
+          { role:"system", content:buildSystemPrompt() },
+          { role:"user", content:audioPrompt }
+        ];
+        if (relevantMems.length) {
+          contextMessages.splice(1, 0, {
+            role:"user",
+            content:`[Contexte depuis la mémoire globale]\n${relevantMems.join('\n')}\n\nContinuez la conversation :`
+          });
+        }
+        const res = await fetch("https://api.mistral.ai/v1/chat/completions", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${state.apiKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: activeModelId,
+            messages: contextMessages,
+            temperature: state.agent?.temperature !== undefined ? state.agent.temperature : activeModel.temp,
+            max_tokens: state.agent?.maxTokens || 4096,
+            top_p: 0.95
+          })
+        });
+        if (!res.ok) {
+          const err = await res.text();
+          let errMsg = err.slice(0, 300);
+          try { const j = JSON.parse(err); errMsg = j.message || j.error?.message || errMsg; } catch(e) {}
+          throw new Error(errMsg);
+        }
+        const data = await res.json();
+        hideTyping();
+        state.messages.push({ role: "assistant", content: data.choices?.[0]?.message?.content || "Aucune réponse", ts: now(), memoryUsed: relevantMems.length ? relevantMems : undefined });
+        renderMessages();
+        await saveChat();
+      }
+    } catch(err) {
+      hideTyping();
+      toast("Erreur audio : " + err.message.slice(0,120), "error");
+      state.messages.push({ role: "assistant", content:`⚠ Transcription échouée : ${err.message}`, ts: now() });
+      renderMessages();
+    } finally {
+      document.getElementById('send-btn').disabled = false;
+      document.getElementById('send-btn').innerHTML = 'SEND ▶';
+      state.attachedFile = null;
+      updateFilePreview();
+    }
+    return;
+  }
+
+  if (state.attachedFile?.type === 'image' && isVision) {
     // Multi-modal message
     const userMsg = {
       role: "user",
-      content: txt || (state.attachedFile.type === 'image' ? "Décris cette image" : "Transcris cet audio"),
+      content: txt || "Décris cette image",
       ts: now(),
-      imageData: state.attachedFile.type === 'image' ? state.attachedFile.data : null,
-      audioName: state.attachedFile.type === 'audio' ? state.attachedFile.name : null
+      imageData: state.attachedFile.data
     };
     state.messages.push(userMsg);
     renderMessages();
@@ -2884,8 +3528,8 @@ async function sendMessage() {
     return;
   }
 
-  if (state.attachedFile && !isVision && !isAudio) {
-    toast("Ce modèle ne supporte pas les fichiers. Utilisez Pixtral Vision ou Voxtral pour audio.", "error");
+  if (state.attachedFile) {
+    toast("Ce modèle ne supporte pas ce fichier. Utilisez Pixtral pour les images ; l'audio est transcrit automatiquement.", "error");
     return;
   }
 
@@ -3022,6 +3666,7 @@ function setWizardStep(n) {
   document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
   const s = document.getElementById('wizard-step-' + n);
   if (s) s.classList.add('active');
+  if (n === 2) syncThemeUi(wizardThemeChoice || document.documentElement.dataset.theme, state.customTheme || DEFAULT_CUSTOM_THEME);
 }
 
 async function generateAgentsWithMistral(apiKey, aiName, aiGoal) {
@@ -3068,6 +3713,20 @@ Réponds UNIQUEMENT avec un JSON valide, sans markdown, sans texte avant ou apr�
 }
 
 function initWizardEvents() {
+  syncThemeUi(wizardThemeChoice, state.customTheme || DEFAULT_CUSTOM_THEME);
+  document.querySelectorAll('[data-theme-choice]').forEach(btn => {
+    btn.onclick = () => {
+      const selected = btn.dataset.themeChoice;
+      const cfg = selected === "custom" ? getCustomThemeFromInputs() : state.customTheme || DEFAULT_CUSTOM_THEME;
+      applyTheme(selected, cfg, false);
+    };
+  });
+  ["custom-theme-bg", "custom-theme-surface", "custom-theme-accent", "custom-theme-glow"].forEach(id => {
+    const input = document.getElementById(id);
+    if (!input) return;
+    input.oninput = () => applyTheme("custom", getCustomThemeFromInputs(), false);
+  });
+
   // Step 1 → Step 2
   document.getElementById('wizard-step1-next').onclick = () => {
     const key = document.getElementById('wizard-api-key').value.trim();
@@ -3087,7 +3746,12 @@ function initWizardEvents() {
     const name = document.getElementById('wizard-ai-name').value.trim();
     const goal = document.getElementById('wizard-ai-goal').value.trim();
     if (!name || !goal) { toast("Nom et objectif obligatoires", "error"); return; }
-    state.aiConfig = { name, goal };
+    const theme = wizardThemeChoice || document.documentElement.dataset.theme || "cyber";
+    const customTheme = theme === "custom" ? getCustomThemeFromInputs() : state.customTheme;
+    applyTheme(theme, customTheme || DEFAULT_CUSTOM_THEME, false);
+    await db.put('settings', { id:'theme', value:theme });
+    if (theme === "custom") await db.put('settings', { id:'customTheme', value:state.customTheme });
+    state.aiConfig = { name, goal, theme, customTheme: theme === "custom" ? state.customTheme : null };
     await db.put('settings', { id: 'aiConfig', value: state.aiConfig });
     updateBrandName();
     setWizardStep(3);
@@ -3280,6 +3944,63 @@ function autoResizeTextarea() {
   ta.style.height = Math.min(ta.scrollHeight, 160) + 'px';
 }
 
+function appendDictationText(text) {
+  const clean = (text || '').trim();
+  if (!clean) return;
+  const input = $("#user-input");
+  const needsSpace = input.value && !/\s$/.test(input.value);
+  input.value += (needsSpace ? ' ' : '') + clean;
+  input.focus();
+  autoResizeTextarea();
+}
+
+async function transcribeWithMistral(audioBlob, options = {}) {
+  if (!state.apiKey) {
+    $("#api-modal").classList.add("active");
+    throw new Error("Configurez votre clé API Mistral d'abord");
+  }
+  if (!audioBlob || audioBlob.size < 200) {
+    throw new Error("Aucun son détecté");
+  }
+
+  const form = new FormData();
+  const ext = audioBlob.type.includes('mp4') ? 'm4a' : audioBlob.type.includes('ogg') ? 'ogg' : 'webm';
+  form.append("model", MISTRAL_TRANSCRIPTION_MODEL);
+  if (options.language) form.append("language", options.language);
+  form.append("file", audioBlob, `dictee-voanh.${ext}`);
+
+  const res = await fetch("https://api.mistral.ai/v1/audio/transcriptions", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${state.apiKey}` },
+    body: form
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    let errMsg = err.slice(0, 300);
+    try {
+      const j = JSON.parse(err);
+      errMsg = j.message || j.error?.message || errMsg;
+    } catch(e) {}
+    const apiError = new Error(errMsg);
+    apiError.status = res.status;
+    throw apiError;
+  }
+
+  const data = await res.json();
+  return extractTranscriptionText(data);
+}
+
+function getSupportedAudioMimeType() {
+  const types = [
+    "audio/webm;codecs=opus",
+    "audio/webm",
+    "audio/mp4",
+    "audio/ogg;codecs=opus"
+  ];
+  return types.find(t => window.MediaRecorder?.isTypeSupported?.(t)) || "";
+}
+
 // ════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════
@@ -3290,10 +4011,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Theme
   try {
     const t = await db.get('settings', 'theme');
-    if (t) {
-      document.documentElement.dataset.theme = t.value;
-      $("#theme-select").value = t.value;
-    }
+    const custom = await db.get('settings', 'customTheme');
+    if (custom?.value) state.customTheme = sanitizeCustomTheme(custom.value);
+    applyTheme(t?.value || document.documentElement.dataset.theme || "cyber", state.customTheme || DEFAULT_CUSTOM_THEME, false);
   } catch(e) {}
 
   // Models
@@ -3387,10 +4107,6 @@ function bindEvents() {
     renderArchives();
   };
 
-  const closeArchivesPanel = () => {
-    archivesPanel.classList.remove("active");
-  };
-
   if (archivesBtn) {
     archivesBtn.onclick = e => {
       e.stopPropagation();
@@ -3434,13 +4150,89 @@ function bindEvents() {
     scrollBottomBtn.onclick = () => { chatContainer.scrollTop = chatContainer.scrollHeight; };
   }
 
-  // Voice dictation
+  // Voice dictation with Mistral Speech/Voxtral transcription
   const voiceBtn = $("#voice-btn");
-  if (voiceBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+  if (voiceBtn && navigator.mediaDevices?.getUserMedia && window.MediaRecorder) {
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let micStream = null;
+    let isRecording = false;
+
+    const resetVoiceBtn = () => {
+      isRecording = false;
+      voiceBtn.disabled = false;
+      voiceBtn.textContent = "🎤";
+      voiceBtn.title = "Dictée vocale Mistral";
+      voiceBtn.classList.remove("recording", "transcribing");
+    };
+
+    const stopMic = () => {
+      if (micStream) micStream.getTracks().forEach(track => track.stop());
+      micStream = null;
+    };
+
+    voiceBtn.title = "Dictée vocale Mistral";
+    voiceBtn.onclick = async () => {
+      if (isRecording && mediaRecorder) {
+        mediaRecorder.stop();
+        return;
+      }
+
+      if (!state.apiKey) {
+        toast("Configurez votre clé API Mistral d'abord", "error");
+        $("#api-modal").classList.add("active");
+        return;
+      }
+
+      try {
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioChunks = [];
+        const mimeType = getSupportedAudioMimeType();
+        mediaRecorder = new MediaRecorder(micStream, mimeType ? { mimeType } : undefined);
+
+        mediaRecorder.ondataavailable = e => {
+          if (e.data?.size) audioChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = async () => {
+          isRecording = false;
+          voiceBtn.classList.remove("recording");
+          voiceBtn.classList.add("transcribing");
+          voiceBtn.disabled = true;
+          voiceBtn.textContent = "⌛";
+          voiceBtn.title = "Transcription Mistral en cours";
+          stopMic();
+
+          try {
+            const type = mediaRecorder.mimeType || mimeType || "audio/webm";
+            const audioBlob = new Blob(audioChunks, { type });
+            const transcript = await transcribeWithMistral(audioBlob, { language: "fr" });
+            appendDictationText(transcript);
+            toast("Dictée Mistral ajoutée", "success");
+          } catch(e) {
+            toast("Erreur dictée : " + e.message.slice(0, 120), "error");
+          } finally {
+            resetVoiceBtn();
+          }
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        voiceBtn.textContent = "■";
+        voiceBtn.title = "Arrêter et transcrire avec Mistral";
+        voiceBtn.classList.add("recording");
+      } catch(e) {
+        stopMic();
+        resetVoiceBtn();
+        toast("Micro indisponible : " + e.message.slice(0, 100), "error");
+      }
+    };
+  } else if (voiceBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SR();
     recognition.lang = 'fr-FR'; recognition.continuous = false; recognition.interimResults = false;
     let isRecording = false;
+    voiceBtn.title = "Dictée vocale navigateur";
     voiceBtn.onclick = () => {
       if (isRecording) { recognition.stop(); return; }
       recognition.start();
@@ -3450,11 +4242,9 @@ function bindEvents() {
     };
     recognition.onresult = e => {
       const transcript = Array.from(e.results).map(r=>r[0].transcript).join('');
-      const inp = $("#user-input");
-      inp.value += (inp.value ? ' ' : '') + transcript;
-      autoResizeTextarea();
+      appendDictationText(transcript);
     };
-    recognition.onend = () => { isRecording = false; voiceBtn.classList.remove("recording"); voiceBtn.title = "Dictée vocale"; };
+    recognition.onend = () => { isRecording = false; voiceBtn.classList.remove("recording"); voiceBtn.title = "Dictée vocale navigateur"; };
     recognition.onerror = () => { isRecording = false; voiceBtn.classList.remove("recording"); toast("Dictée vocale indisponible", "error"); };
   } else if (voiceBtn) {
     voiceBtn.style.display = "none";
@@ -3495,8 +4285,7 @@ function bindEvents() {
 
   // Theme
   $("#theme-select").onchange = e => {
-    document.documentElement.dataset.theme = e.target.value;
-    db.put('settings', { id:'theme', value:e.target.value }).catch(()=>{});
+    applyTheme(e.target.value, state.customTheme || DEFAULT_CUSTOM_THEME, true);
   };
 
   // API Modal
@@ -3772,9 +4561,7 @@ function bindEvents() {
     const mThemeSel = $("#theme-select-mob");
     if (mThemeSel) {
       mThemeSel.onchange = e => {
-        document.documentElement.dataset.theme = e.target.value;
-        $("#theme-select").value = e.target.value;
-        db.put('settings', { id:'theme', value:e.target.value }).catch(()=>{});
+        applyTheme(e.target.value, state.customTheme || DEFAULT_CUSTOM_THEME, true);
       };
     }
 
